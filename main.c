@@ -9,8 +9,8 @@ int main(int argc, char ** argv)
 	//Make sure command line args are correct
 	if (argc != 3)
 	{
-		printf(stderr, "Wrong number of comand line arguments\n");
-		printf(stderr, "Usage: ./main <mazeFile> <pathFile>\n");
+		fprintf(stderr, "Wrong number of comand line arguments\n");
+		fprintf(stderr, "Usage: ./main <mazeFile> <pathFile>\n");
 	}
 
 	Maze * m = read_maze(argv[1]);
