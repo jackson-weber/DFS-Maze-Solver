@@ -101,10 +101,8 @@ int write_path(char * pathFileName, char * path)
 		return EXIT_FAILURE;
 	}
 	
-	//Print out final path
-	fprintf(f, "%s", path);
-	/*
-	if (path != NULL)
+	//Print out final path or no solution
+	if (path[0] != 0)
 	{
 		fprintf(f, "%s", path);
 	}
@@ -112,7 +110,6 @@ int write_path(char * pathFileName, char * path)
 	{
 		fprintf(f, "No solution found!\n");
 	}
-	*/
 
 	fclose(f);
 	

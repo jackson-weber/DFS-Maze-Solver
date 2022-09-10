@@ -21,7 +21,13 @@ char * solve_maze(Maze * m)
 		}
 	}
 	
+	//Initialize output array to 0s to tell if a solution is found or not
+	//and to avoid printing garbage values to output files
 	char * mazeSolution = malloc(maxSolutionSize * sizeof(char));
+	for (int i = 0; i < maxSolutionSize; i++)
+	{
+		*(mazeSolution + i) = 0;
+	}
 
 	MazePos mpos = { .xpos = m -> start.xpos, .ypos = m -> start.ypos };
 
