@@ -4,7 +4,7 @@
 
 Maze * read_maze(char * mazeFileName)
 {
-	FILE * inputMaze = fopen(mazeFileName, 'r');
+	FILE * inputMaze = fopen(mazeFileName, "r");
 	
 	if (inputMaze == NULL)
 	{
@@ -15,7 +15,7 @@ Maze * read_maze(char * mazeFileName)
 	Maze * m = malloc(sizeof(Maze));
 	
 	//Make sure height and width are in the first line of the maze input
-	if (fscanf(inMaze, "%d %d\n", &(m -> height), &(m -> width)) != 2)
+	if (fscanf(inputMaze, "%d %d\n", &(m -> height), &(m -> width)) != 2)
 	{
 		fprintf(stderr, "Wrongly formatted input: can't read maze dimensions\n");
 		free(m);
@@ -34,7 +34,7 @@ Maze * read_maze(char * mazeFileName)
 	{
 		for (int j = 0; j < m -> width; j++)
 		{
-			int val = fgetc(inMaze);
+			int val = fgetc(inputMaze);
 			m -> maze[i][j].type = val;
 			m -> maze[i][j].visited = false;
 			
@@ -49,10 +49,19 @@ Maze * read_maze(char * mazeFileName)
 				m -> end.ypos = i;
 			}
 		}
+
+		//Make sure we are at the end of the line
+		int c = fgetc(inputMaze);
+		if (c != '\n')
+		{
+			fprintf(stderr, "Incorrectly formatted maze file: %s\n", mazeFileName);
+			free_maze(m);
+			free(m);
+			return NULL;
+		}
 	}
 
-	//Make sure we are at the end of the line
-	if (fgetc(inputMaze) != '\n')
+	if (fclose(inputMaze))
 	{
 		fprintf(stderr, "Error closing file %s\n", mazeFileName);
 		free_maze(m);

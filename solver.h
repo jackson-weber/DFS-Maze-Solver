@@ -4,6 +4,6 @@
 
 char * solve_maze(Maze * m);
 
-bool depth_first_search(Maze * m, char * path, int step);
+bool depth_first_search(Maze * m, MazePos curpos, char * path, int step);
 
 #endif

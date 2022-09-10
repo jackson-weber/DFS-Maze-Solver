@@ -6,10 +6,10 @@
 //Define types of maze squares
 typedef enum SquareType 
 {
-	WALL = '#';
-	SPACE = '.';
-	START = 's';
-	END = 'e';
+	WALL = '#',
+	SPACE = '.',
+	START = 's',
+	END = 'e',
 } SquareType;
 
 //Maze squares
@@ -33,7 +33,7 @@ typedef struct Maze
 	int width;
 	int height;
 	MazePos start; //Location of 's'
-	MazePost end; //Location of 'e'
+	MazePos end; //Location of 'e'
 } Maze;
 
 Maze * read_maze(char * mazeFileName);

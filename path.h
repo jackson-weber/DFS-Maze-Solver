@@ -6,13 +6,13 @@
 
 typedef enum PathType
 {
-	NORTH = 'n';
-	SOUTH = 's';
-	EAST = 'e';
-	WEST = 'w';
+	NORTH = 'n',
+	SOUTH = 's',
+	EAST = 'e',
+	WEST = 'w',
 } PathType;
 
-char read_path(char * pathFileName);
+char * read_path(char * pathFileName);
 
 int write_path(char * pathFileName, char * path);
 

@@ -6,8 +6,9 @@
 bool check_path(Maze * m, char * path)
 {
 	MazePos cur = { .xpos = m -> start.xpos, .ypos = m -> start.ypos };
+	int pathPos = 0;
 	
-	while (path [pathPos])
+	while (path[pathPos] != '\0')
 	{
 		printf("At position %d. Maze positionL (%d, %d), Square type: %c, Next step: %c\n", 
 			pathPos, cur.xpos, cur.ypos, m -> maze[cur.ypos][cur.xpos].type, path[pathPos]);
@@ -46,15 +47,15 @@ bool check_path(Maze * m, char * path)
 		
 		pathPos++;
 	
-		//Will return false until we are at the end of the maze
-		//Used as helper for recursive DFS implementation in solver.c
-		return false;
 	}
+	//Will return false until we are at the end of the maze	
+	//Used as helper for recursive DFS implementation in solver.c
+	return false;
 }
 
 char * read_path(char * pathFileName)
 {
-	FILE * inputPath = fopen(pathFileName, 'r');
+	FILE * inputPath = fopen(pathFileName, "r");
 	
 	if (inputPath == NULL)
 	{
@@ -92,7 +93,7 @@ char * read_path(char * pathFileName)
 
 int write_path(char * pathFileName, char * path)
 {
-	FILE * f = fopen(pathFileName, 'w');
+	FILE * f = fopen(pathFileName, "w");
 
 	if (f == NULL)
 	{
@@ -102,9 +103,18 @@ int write_path(char * pathFileName, char * path)
 	
 	//Print out final path
 	fprintf(f, "%s", path);
-	
+	/*
+	if (path != NULL)
+	{
+		fprintf(f, "%s", path);
+	}
+	else
+	{
+		fprintf(f, "No solution found!\n");
+	}
+	*/
+
 	fclose(f);
 	
 	return EXIT_SUCCESS;
-	
 }
